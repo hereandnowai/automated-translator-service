@@ -1,11 +1,14 @@
 name: Build and Deploy to FTP
+
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v3
@@ -26,4 +29,4 @@ jobs:
         mkdir -p /apps.hereandnowai.com/apps/${{ github.event.repository.name }}
         mirror -R --delete --verbose ./dist /apps.hereandnowai.com/apps/${{ github.event.repository.name }}
         bye
-FTP_EOF
+        FTP_EOF

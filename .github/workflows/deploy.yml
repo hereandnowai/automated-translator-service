@@ -1,0 +1,29 @@
+name: Build and Deploy to FTP
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+    - run: npm install
+    - run: echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" > .env
+    - run: npm run build
+    - name: Make Asset Paths Relative
+      run: |
+        sed -i 's|href="/|href="./|g' dist/index.html
+        sed -i 's|src="/|src="./|g' dist/index.html
+    - name: Upload to FTP
+      run: |
+        sudo apt-get -y install lftp
+        lftp -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} -p 3000 ${{ secrets.FTP_HOST }} <<FTP_EOF
+        set ftp:ssl-allow no
+        mkdir -p /apps.hereandnowai.com/apps/${{ github.event.repository.name }}
+        mirror -R --delete --verbose ./dist /apps.hereandnowai.com/apps/${{ github.event.repository.name }}
+        bye
+FTP_EOF

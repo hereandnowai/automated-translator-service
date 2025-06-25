@@ -1,0 +1,11 @@
+/node_modules
+.venv/
+/dist
+/build
+/.output
+logs
+*.log
+.env
+.env.local
+.env.*
+.DS_Store

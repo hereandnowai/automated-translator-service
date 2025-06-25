@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HEREANDNOW AI Translation Service</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="https://raw.githubusercontent.com/hereandnowai/images/refs/heads/main/logos/HNAI%20Fevicon%20-Teal%20%26%20Golden%20Logo%20-%20DESIGN%203%20-%20Raj-03.png" type="image/png">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif; /* A nice default sans-serif font */
+      /* Ensure body can scroll if content overflows, especially for homepage on small screens */
+      overflow-y: auto; 
+    }
+    /* Add a custom scrollbar style for better aesthetics */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1e293b; /* slate-800 */
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #475569; /* slate-600 */
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #64748b; /* slate-500 */
+    }
+
+    /* Homepage Animations */
+    @keyframes fadeInContent {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideUpContent {
+      from { opacity: 0; transform: translateY(30px); } /* Increased translateY for more pronounced effect */
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulseCta {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.5); } /* teal-500 with alpha */
+      50% { transform: scale(1.03); box-shadow: 0 0 0 12px rgba(20, 184, 166, 0); } /* Increased spread */
+    }
+
+    .fade-in-content { animation: fadeInContent 0.8s ease-out; } /* Slightly faster fade */
+    .slide-up-content { animation: slideUpContent 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; animation-fill-mode: backwards; } /* Smoother easing, 'forwards' to maintain end state */
+    .pulse-cta { animation: pulseCta 2.2s infinite ease-in-out; } /* Adjusted timing */
+
+    /* Basic text shadow for better readability on complex backgrounds (optional) */
+    .text-shadow-sm {
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+    .text-shadow-md {
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^18.2.0/",
+    "react": "https://esm.sh/react@^18.2.0",
+    "react-dom/": "https://esm.sh/react-dom@^18.2.0/",
+    "@google/genai": "https://esm.sh/@google/genai@^0.13.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-gradient-to-br from-slate-900 to-slate-800 text-slate-100 min-h-screen flex flex-col">
+  <div id="root" class="flex-grow flex flex-col"></div>
+  <script type="module" src="./index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "AUTOMATED TRANSLATOR SERVICE",
+  "description": "",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "prompt": ""
+}
